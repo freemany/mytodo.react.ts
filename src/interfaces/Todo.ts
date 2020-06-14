@@ -8,7 +8,7 @@ export interface TodoListInterface {
     // handleTodoUpdate: (event: React.ChangeEvent<HTMLInputElement>, id: string) => void;
     // handleTodoRemove: (id: string) => void;
     // handleTodoComplete: (id: string) => void;
-    // handleTodoBlur: (event: React.ChangeEvent<HTMLInputElement>) => void;
+    handleTodoRemove: (index: number) => void;
     todos: TodoItemInterface[]
 };
 

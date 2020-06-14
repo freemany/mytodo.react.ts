@@ -22,10 +22,15 @@ const App = () => {
 
         setTodos([...todos, newTodo]);
     };
+    const handleTodoRemove = (index: number) => {
+        const reducedTodos = todos.filter((_, i) => i !== index);
+        setTodos(reducedTodos);
+    };
+
     return (
     <div><h1>Welcome to My Todo App !!!</h1>
-    <TodoList todos={todos} />
-    <TodoForm handleTodoCreate={handleTodoCreate}/>
+    <TodoList todos={todos} handleTodoRemove={handleTodoRemove} />
+    <TodoForm handleTodoCreate={handleTodoCreate} />
     </div>
     );
 };
