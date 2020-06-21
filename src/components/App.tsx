@@ -3,12 +3,16 @@ import TodoList from './TodoList';
 import TodoForm from './TodoForm';
 import { TodoItemInterface } from './../interfaces/Todo';
 import initialTodo from './../store/initial';
+import { addTodo } from './../store/actions/todoAction';
+import { connect } from 'react-redux';
+
 // import { BehaviorSubject } from 'rxjs';
 
 // const test = new BehaviorSubject(null);
-// test.next(null);
+// test.next(null)
+import storeFactory from './../store';
 
-const App = () => {
+const App = (props) => {
     const [todos, setTodos] = useState<Array<TodoItemInterface>> (initialTodo);
     const handleTodoCreate = (event: React.MouseEvent, task: string) => {
         event.preventDefault();
@@ -19,8 +23,10 @@ const App = () => {
             task,
             finished: false
         };
-
-        setTodos([...todos, newTodo]);
+        // addTodo(newTodo);
+        storeFactory.dispatch(addTodo(newTodo));
+        console.log('todo store', todos);
+        // setTodos([...todos, newTodo]);
     };
     const handleTodoRemove = (index: number) => {
         const reducedTodos = todos.filter((_, i) => i !== index);
@@ -29,10 +35,18 @@ const App = () => {
 
     return (
     <div><h1>Welcome to My Todo App !!!</h1>
-    <TodoList todos={todos} handleTodoRemove={handleTodoRemove} />
+    <TodoList todos={props.todos} handleTodoRemove={handleTodoRemove} />
     <TodoForm handleTodoCreate={handleTodoCreate} />
     </div>
     );
 };
+ 
+const mapStateToProps = state => {
+    console.log('mapstate props', state);
+    return {
+        todos: state
+    }
+}
 
-export default App;
+export default connect(mapStateToProps)(App);
+// export default App;

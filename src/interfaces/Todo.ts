@@ -15,3 +15,8 @@ export interface TodoListInterface {
 export interface TodoFormInterface {
     handleTodoCreate: (event: React.MouseEvent<HTMLButtonElement, MouseEvent>, task: string) => void;
 };
+
+export interface ReducerInterface {
+    type: string;
+    payload: any;
+};

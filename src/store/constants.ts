@@ -1,0 +1,6 @@
+export default {
+    ADD_TODO: 'ADD_TODO',
+    EDIT_TODO: 'EDIT_TODO',
+    REMOVE_TODO: 'REMOVE_TODO',
+    LIST_TODOS: 'LIST_TODOS'
+};
