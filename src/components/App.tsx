@@ -3,7 +3,7 @@ import TodoList from './TodoList';
 import TodoForm from './TodoForm';
 import { TodoItemInterface } from './../interfaces/Todo';
 import initialTodo from './../store/initial';
-import { addTodo } from './../store/actions/todoAction';
+import { addTodo, removeTodo } from './../store/actions/todoAction';
 import { connect } from 'react-redux';
 
 // import { BehaviorSubject } from 'rxjs';
@@ -21,16 +21,17 @@ const App = (props) => {
         }
         const newTodo: TodoItemInterface = {
             task,
-            finished: false
+            finished: false,
+            isEditing: false
         };
         // addTodo(newTodo);
         storeFactory.dispatch(addTodo(newTodo));
-        console.log('todo store', todos);
         // setTodos([...todos, newTodo]);
     };
     const handleTodoRemove = (index: number) => {
-        const reducedTodos = todos.filter((_, i) => i !== index);
-        setTodos(reducedTodos);
+        // const reducedTodos = todos.filter((_, i) => i !== index);
+        // setTodos(reducedTodos);
+        storeFactory.dispatch(removeTodo(index));
     };
 
     return (

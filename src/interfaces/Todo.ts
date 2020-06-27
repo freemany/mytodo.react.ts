@@ -1,6 +1,7 @@
 export interface TodoItemInterface {
     task: string;
     finished: boolean;
+    isEditing: boolean;
 };
 
 // Todo list interface

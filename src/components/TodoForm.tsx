@@ -3,7 +3,6 @@ import { TodoFormInterface } from './../interfaces/Todo';
 
 const TodoForm = (props: TodoFormInterface) => {
   const inputRef = React.useRef<HTMLInputElement>(null);
-
   const createTodo = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
     props.handleTodoCreate(e, inputRef && inputRef.current ? inputRef.current.value : '');
     if (inputRef && inputRef.current) {
